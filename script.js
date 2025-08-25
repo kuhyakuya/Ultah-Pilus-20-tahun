@@ -76,7 +76,7 @@ btnNext.addEventListener('click',e=>{ e.stopPropagation(); goNext(); });
 
 function goNext(){
   window.open("https://youtube.com/shorts/qvNbFcG8NeA?si=QRv5sqXoYqvdoJRi","_blank");
-  setTimeout(()=>{ window.location.href="https://wa.me/6283199899161?text=Anjay%20gua%20semakin%20tua%20cuy!"; },27000);
+  setTimeout(()=>{ window.location.href="https://wa.me/6283199899161?text=Anjay%20gua%20semakin%20tua%20cuy!"; },3000);
 }
 
 /* Confetti */
@@ -117,3 +117,4 @@ function startConfetti(){
   }
   tick();
 }
+
