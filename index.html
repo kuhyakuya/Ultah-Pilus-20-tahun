@@ -8,11 +8,16 @@
 </head>
 <body>
 
+  <!-- Dummy Music -->
+  <audio id="bgm" loop>
+    <source src="https://raw.githubusercontent.com/kuhyakuya/Ultah-Pilus-20-tahun/main/Music/dummy.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- Page 1 -->
   <div class="page active" id="page1">
     <p><strong>Bolehkah memutar lagu?</strong></p>
-    <button class="btn" onclick="nextPage()">Tentu saja</button>
-    <button class="btn" onclick="nextPage()">Tidak, terima kasih</button>
+    <button class="btn" onclick="playMusic(true)">Tentu saja</button>
+    <button class="btn" onclick="playMusic(false)">Tidak, terima kasih</button>
     <div class="gif-full">
       <img src="https://media0.giphy.com/media/40a8kdO2zfYTEzBuMN/giphy.gif" alt="Gif 1">
     </div>
@@ -37,7 +42,7 @@
         <p id="giftMessage">Ketuk gulungan misterius ini</p>
       </div>
       <img id="giftGif"
-        src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3c0NGl3bm84ZXZ5dWw2NGhlMnRmcmxobzB1bjB5d28wZnlwZ2R6MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/W2jveZRkoTtFdvALe1/giphy.gif"
+        src="https://media4.giphy.com/media/9NLyowL7AgSg1BYG5W/giphy.gif"
         alt="Gif rame">
     </div>
   </div>
@@ -65,6 +70,14 @@
   <canvas id="confettiCanvas"></canvas>
 
   <script src="script.js"></script>
+  <script>
+    // Play / skip music
+    function playMusic(yes){
+      if(yes){
+        document.getElementById("bgm").play();
+      }
+      nextPage();
+    }
+  </script>
 </body>
 </html>
-
