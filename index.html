@@ -9,10 +9,15 @@
 <body>
 
   <!-- Dummy Music -->
-<audio controls>
-  <source src="https://drive.google.com/file/d/1tlMxES9YbQDLwYOKnBxRMOjINCd2R-x8/view?usp=sharing" type="audio/mpeg">
-  Browser kamu gak support audio.
-</audio>
+ <audio id="bgm" src="music/i wanna like.mp3" autoplay loop muted></audio>
+
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("bgm");
+    audio.muted = false;
+    audio.play();
+  });
+</script>
 
   <!-- Page 1 -->
   <div class="page active" id="page1">
@@ -82,10 +87,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
