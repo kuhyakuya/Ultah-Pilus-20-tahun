@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Kado Ulang Tahun</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div class="page active" id="page1">
+    <p><strong>Bolehkah memutar lagu?</strong></p>
+    <button class="btn" onclick="nextPage()">Tentu saja</button>
+    <button class="btn" onclick="nextPage()">Tidak, terima kasih</button>
+    <div class="gif-full">
+      <img src="https://media0.giphy.com/media/40a8kdO2zfYTEzBuMN/giphy.gif" alt="Gif 1">
+    </div>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page" id="page2">
+    <h1 id="welcomeText"></h1>
+    <p id="subtitle" class="subtitle">haha semakin tua lu</p>
+    <div class="gif-full">
+      <img src="https://media4.giphy.com/media/9NLyowL7AgSg1BYG5W/giphy.gif" alt="Gif 2">
+    </div>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="page" id="page3">
+    <div id="stage">
+      <div id="giftWrap">
+        <img id="giftBox"
+          src="https://github.com/kuhyakuya/Ultah-Pilus-20-tahun/blob/main/Image/gulungan%20tertutup.png?raw=true"
+          alt="Gulungan Misterius">
+        <p id="giftMessage">Ketuk gulungan misterius ini</p>
+      </div>
+      <img id="giftGif"
+        src="https://media4.giphy.com/media/9NLyowL7AgSg1BYG5W/giphy.gif"
+        alt="Gif rame">
+    </div>
+  </div>
+
+  <!-- Surat -->
+  <div id="letter">
+    <h3>📜 Surat Untuk Piluss alis lusi selviana</h3>
+    <p>Wedehhh 20 tahun 🎉</p>
+    <p>huweheheheee, nyusul tua juga lu 🎂. Makasih yang kemaren, yaaaa... tapi gua sih mbalesnya simpel aja (walaupun bikin ini agak pusing juga 🤯).</p>
+    <p><b>Alhamdulillah</b> lu masih bisa dikasih kesempatan nyusul 🙏. Bersyukur lu kepada Sang Maha Kuasa. Semoga kedepannya hidup makin terang kayak lampu pilip 💡.</p>
+    <p>Semoga juga dipermudah pikirannya, jangan sampai stress. Jaga juga pola makannya yak 🍽️.</p>
+    <p>Sebenarnya gua ga jago yapping, jadi agak bingung nulis ini 🤔. Kek orang ngelantur anjay, maklumi lah ya wkwk 🤪.</p>
+    <p>Sebenarnya nih web mo gua buat kayak VN aja, cuman suara gua jelek <i>ewww</i>, jadi geli sendiri anjir wkwk 🎤🤣.</p>
+    <p><b>Oh iya</b>, lu temen cewe terbaik gua (26/08/2025) 💐. Karena yang lain dah asing gara-gara ayangnya, hadehhh... yaudah lah ya 😅.</p>
+    <p>Entah kedepannya gimana, entah kita semakin jauh apa semakin dekat, kita ga tau. Ikutin alurnya aja 🌊. Aku berterimakasih dah sering diingetin minum hehe 🥤.</p>
+    <p>Lus, lu nafas manual yak? 😏 Kedip juga, telen ludah juga manual kan ya? 😂</p>
+    <p><b>Oh iya!</b> Itu ada tombol di bawah coba dipencet, itu video mahal 🎥💸 wkwk.</p>
+
+    <div class="actions">
+      <button id="btnClose" class="btn secondary">Tutup</button>
+      <button id="btnNext" class="btn">Ucapan spesial dari admin besar</button>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
