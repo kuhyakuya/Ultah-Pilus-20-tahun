@@ -1,68 +1,114 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Virtual Kado Ulang Tahun</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+body {
+  margin: 0; padding: 0;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  font-size: 4vw; /* biar gede di mobile */
+}
 
-  <!-- Page 1 -->
-  <div class="page active" id="page1">
-    <p><strong>Bolehkah memutar lagu?</strong></p>
-    <button class="btn" onclick="nextPage()">Tentu saja</button>
-    <button class="btn" onclick="nextPage()">Tidak, terima kasih</button>
-    <div class="gif-full">
-      <img src="https://media0.giphy.com/media/40a8kdO2zfYTEzBuMN/giphy.gif" alt="Gif 1">
-    </div>
-  </div>
+.page {
+  width: 100%; height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  position: absolute; top: 0; left: 0;
+  opacity: 0; transition: opacity 1s ease;
+  background: #fff; text-align: center;
+  z-index: 0;
+  padding: 1rem;
+}
+.page.active { opacity: 1; z-index: 1; }
 
-  <!-- Page 2 -->
-  <div class="page" id="page2">
-    <h1 id="welcomeText"></h1>
-    <p id="subtitle" class="subtitle">haha semakin tua lu</p>
-    <div class="gif-full">
-      <img src="https://media4.giphy.com/media/9NLyowL7AgSg1BYG5W/giphy.gif" alt="Gif 2">
-    </div>
-  </div>
+h1, p { margin: .5rem 0; color: #000; line-height: 1.4; }
 
-  <!-- Page 3 -->
-  <div class="page" id="page3">
-    <div id="stage">
-      <div id="giftWrap">
-        <img id="giftBox"
-          src="https://github.com/kuhyakuya/Ultah-Pilus-20-tahun/blob/main/Image/gulungan%20tertutup.png?raw=true"
-          alt="Gulungan Misterius">
-        <p id="giftMessage">Ketuk gulungan misterius ini</p>
-      </div>
-      <img id="giftGif"
-        src="https://media4.giphy.com/media/9NLyowL7AgSg1BYG5W/giphy.gif"
-        alt="Gif rame">
-    </div>
-  </div>
+.btn {
+  padding: 3vw 6vw;
+  margin: 2vw;
+  border: none; border-radius: 2vw;
+  background: #222; color: #fff; cursor: pointer;
+  font-size: 4vw;
+  transition: background .3s;
+}
+.btn:hover { background: #444; }
+.btn.secondary{ background: #e9e9e9; color: #111; }
 
-  <!-- Surat -->
-  <div id="letter">
-    <h3>📜 Surat Untuk Piluss alis lusi selviana</h3>
-    <p>Wedehhh 20 tahun 🎉</p>
-    <p>huweheheheee, nyusul tua juga lu 🎂. Makasih yang kemaren, yaaaa... tapi gua sih mbalesnya simpel aja (walaupun bikin ini agak pusing juga 🤯).</p>
-    <p><b>Alhamdulillah</b> lu masih bisa dikasih kesempatan nyusul 🙏. Bersyukur lu kepada Sang Maha Kuasa. Semoga kedepannya hidup makin terang kayak lampu pilip 💡.</p>
-    <p>Semoga juga dipermudah pikirannya, jangan sampai stress. Jaga juga pola makannya yak 🍽️.</p>
-    <p>Sebenarnya gua ga jago yapping, jadi agak bingung nulis ini 🤔. Kek orang ngelantur anjay, maklumi lah ya wkwk 🤪.</p>
-    <p>Sebenarnya nih web mo gua buat kayak VN aja, cuman suara gua jelek <i>ewww</i>, jadi geli sendiri anjir wkwk 🎤🤣.</p>
-    <p><b>Oh iya</b>, lu temen cewe terbaik gua (26/08/2025) 💐. Karena yang lain dah asing gara-gara ayangnya, hadehhh... yaudah lah ya 😅.</p>
-    <p>Entah kedepannya gimana, entah kita semakin jauh apa semakin dekat, kita ga tau. Ikutin alurnya aja 🌊. Aku berterimakasih dah sering diingetin minum hehe 🥤.</p>
-    <p>Lus, lu nafas manual yak? 😏 Kedip juga, telen ludah juga manual kan ya? 😂</p>
-    <p><b>Oh iya!</b> Itu ada tombol di bawah coba dipencet, itu video mahal 🎥💸 wkwk.</p>
+.gif-full img { max-width: 70vw; height: auto; }
 
-    <div class="actions">
-      <button id="btnClose" class="btn secondary">Tutup</button>
-      <button id="btnNext" class="btn">Ucapan spesial dari admin besar</button>
-    </div>
-  </div>
+/* Animasi teks page2 */
+.word { opacity: 0; display: inline-block;
+  animation: fadeInWord .8s forwards;
+  margin-right: 6px;
+}
+@keyframes fadeInWord {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.subtitle { opacity: 0; font-size: 3.5vw; margin-top: 2vw; }
+.subtitle.show { animation: fadeInSub .6s ease forwards; }
+@keyframes fadeInSub {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-  <canvas id="confettiCanvas"></canvas>
+/* Page3 styling */
+:root { --gif-size: 40vw; }
+#stage { position: relative; width: 100vw; height: 100vh; }
+#giftWrap{
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2vw; text-align: center;
+  z-index: 2; user-select: none;
+}
+#giftBox{ width: 28vw; cursor: pointer; display: block; }
+#giftMessage{ margin: 0; font-size: 3.5vw; max-width: 80vw; }
 
-  <script src="script.js"></script>
-</body>
-</html>
+#giftGif{
+  position: absolute; right: 3vw; bottom: 3vw;
+  width: var(--gif-size); opacity: .85;
+  pointer-events: none; z-index: 1;
+  display: none;
+}
+
+@keyframes shakeBox {
+  0%,100%{transform:rotate(0deg);}
+  20%{transform:rotate(-10deg);}
+  40%{transform:rotate(10deg);}
+  60%{transform:rotate(-8deg);}
+  80%{transform:rotate(8deg);}
+}
+.shake{ animation: shakeBox .6s ease-in-out 2; }
+
+/* surat */
+#letter {
+  position: absolute; left: 50%; top: 55%;
+  transform: translate(-50%,-50%);
+  width: 90vw; max-width: 420px; 
+  max-height: 65vh;
+  padding: 4vw; background: #fff;
+  border-radius: 4vw; 
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  opacity: 0; pointer-events: none;
+  transition: opacity .5s ease, transform .5s ease;
+  z-index: 3; overflow-y: auto;
+  font-size: 3.5vw;
+}
+#letter h3 { margin: 0 0 2vw; font-size: 4.5vw; }
+#letter .actions{ display: flex; gap: 2vw; justify-content: flex-end; margin-top: 3vw;
+  position: sticky; bottom: 0; background: linear-gradient(180deg, transparent, #fff 40%);
+  padding-top: 2vw;
+}
+#letter.show { opacity: 1; pointer-events: auto; transform: translate(-50%,-52%); }
+
+#confettiCanvas{ position: fixed; inset: 0; width:100vw; height:100vh;
+  pointer-events:none; z-index:1;
+}
+
+/* desktop override */
+@media (min-width: 768px) {
+  body { font-size: 16px; }
+  .btn { font-size: 16px; padding: 12px 20px; border-radius: 8px; }
+  #giftBox { width: 140px; }
+  #giftMessage { font-size: 16px; }
+  #letter { font-size: 16px; border-radius: 14px; }
+  #letter h3 { font-size: 20px; }
+}
