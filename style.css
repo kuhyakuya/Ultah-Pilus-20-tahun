@@ -3,7 +3,7 @@ body {
   background: #fff;
   font-family: Arial, sans-serif;
   overflow: hidden;
-  font-size: 4vw; /* biar gede di mobile */
+  font-size: 4vw; /* gede di mobile */
 }
 
 .page {
