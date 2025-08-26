@@ -1,8 +1,41 @@
+/* ====== MUSIC CONTROL ====== */
+const audioEl = document.getElementById('bgm');
+let musicLocked = false; // kalau user pilih "Tidak", kunci agar tidak bisa nyala lagi
+
+// tombol page1
+const btnYes = document.getElementById('btnYes');
+const btnNo  = document.getElementById('btnNo');
+
+btnYes.addEventListener('click', async () => {
+  if (musicLocked) { nextPage(); return; }
+  try {
+    audioEl.muted = false;
+    await audioEl.play(); // user-gesture, jadi harusnya lolos policy
+  } catch (e) {
+    // fallback: kalau gagal, tetap lanjut tanpa musik
+    console.warn('Gagal play audio:', e);
+  }
+  nextPage();
+});
+
+btnNo.addEventListener('click', () => {
+  // pastikan musik mati total
+  musicLocked = true;
+  audioEl.pause();
+  audioEl.currentTime = 0;
+  audioEl.muted = true;
+  nextPage();
+});
+
+/* ====== PAGE FLOW ====== */
 let currentPage = 1;
 function nextPage(){
-  document.getElementById("page"+currentPage).classList.remove("active");
+  const cur = document.getElementById("page"+currentPage);
+  if (cur) cur.classList.remove("active");
   currentPage++;
-  document.getElementById("page"+currentPage).classList.add("active");
+  const nxt = document.getElementById("page"+currentPage);
+  if (nxt) nxt.classList.add("active");
+
   if(currentPage===2){
     showTextPerWord("Selamat Ulang Tahun ke 20 🎉",()=>{
       document.getElementById("subtitle").classList.add("show");
@@ -37,8 +70,13 @@ const btnClose=document.getElementById('btnClose');
 const btnNext=document.getElementById('btnNext');
 let clickCount=0,endMode=false,extraClicks=0;
 
-const messages=["Ketuk gulungan misterius ini","hehe","Haha ga semudah itu",
-"yah elah kurang cepet lu mencetnya","dah nih gua kasih, lu kelamaan baca daripada fokus nangkep gulungan ini"];
+const messages=[
+  "Ketuk gulungan misterius ini",
+  "hehe",
+  "Haha ga semudah itu",
+  "yah elah kurang cepet lu mencetnya",
+  "dah nih gua kasih, lu kelamaan baca daripada fokus nangkep gulungan ini"
+];
 const positions=[{x:50,y:50},{x:20,y:80},{x:80,y:30},{x:25,y:40},{x:50,y:50}];
 
 function moveWrapTo(p){ giftWrap.style.left=p.x+"%"; giftWrap.style.top=p.y+"%"; }
@@ -60,7 +98,9 @@ giftBox.addEventListener('click',()=>{
       giftGif.style.display="block"; // tampilkan gif rame
     },{once:true});
     startConfetti();
-    setTimeout(()=>{ letter.classList.add("show"); endMode=true;
+    setTimeout(()=>{ 
+      letter.classList.add("show"); 
+      endMode=true;
       setTimeout(()=>{document.addEventListener('click',spamHandler);},0);
     },600);
   }
@@ -76,7 +116,9 @@ btnNext.addEventListener('click',e=>{ e.stopPropagation(); goNext(); });
 
 function goNext(){
   window.open("https://youtube.com/shorts/qvNbFcG8NeA?si=QRv5sqXoYqvdoJRi","_blank");
-  setTimeout(()=>{ window.location.href="https://wa.me/6283199899161?text=Anjay%20gua%20semakin%20tua%20cuy!"; },3000);
+  setTimeout(()=>{ 
+    window.location.href="https://wa.me/6283199899161?text=Anjay%20gua%20semakin%20tua%20cuy!"; 
+  },3000);
 }
 
 /* Confetti */
@@ -92,11 +134,17 @@ function startConfetti(){
   resize(); window.addEventListener('resize',resize);
   const pieces=[],COUNT=160;
   for(let i=0;i<COUNT;i++){
-    pieces.push({x:Math.random()*window.innerWidth,y:(Math.random()*-window.innerHeight),
-      size:6+Math.random()*10,color:`hsl(${Math.random()*360},95%,55%)`,
-      vy:2+Math.random()*3,vx:(Math.random()-.5)*1.2,
-      angle:Math.random()*Math.PI*2,rotateSpeed:(Math.random()-.5)*0.25,
-      shape:["rect","circle","triangle"][Math.floor(Math.random()*3)]});
+    pieces.push({
+      x:Math.random()*window.innerWidth,
+      y:(Math.random()*-window.innerHeight),
+      size:6+Math.random()*10,
+      color:`hsl(${Math.random()*360},95%,55%)`,
+      vy:2+Math.random()*3,
+      vx:(Math.random()-.5)*1.2,
+      angle:Math.random()*Math.PI*2,
+      rotateSpeed:(Math.random()-.5)*0.25,
+      shape:["rect","circle","triangle"][Math.floor(Math.random()*3)]
+    });
   }
   function draw(p){
     ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle); ctx.fillStyle=p.color;
@@ -117,4 +165,3 @@ function startConfetti(){
   }
   tick();
 }
-
