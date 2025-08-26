@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Virtual Kado Ulang Tahun</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Dummy Music -->
- <audio id="bgm" src="music/i wanna like.mp3" autoplay loop muted></audio>
-
-<script>
-  document.addEventListener("click", () => {
-    const audio = document.getElementById("bgm");
-    audio.muted = false;
-    audio.play();
-  });
-</script>
+  <!-- Music (tidak autoplay, biar kita kontrol via tombol) -->
+  <!-- Note: kalau nama file ada spasi, aman juga ditulis sebagai i%20wanna%20like.mp3 -->
+  <audio id="bgm" src="music/i wanna like.mp3" preload="auto" loop muted></audio>
 
   <!-- Page 1 -->
   <div class="page active" id="page1">
     <p><strong>Bolehkah memutar lagu?</strong></p>
-    <button class="btn" onclick="playMusic(true)">Tentu saja</button>
-    <button class="btn" onclick="playMusic(false)">Tidak, terima kasih</button>
+    <button class="btn" id="btnYes">Tentu saja</button>
+    <button class="btn" id="btnNo">Tidak, terima kasih</button>
     <div class="gif-full">
       <img src="https://media0.giphy.com/media/40a8kdO2zfYTEzBuMN/giphy.gif" alt="Gif 1">
     </div>
@@ -76,15 +69,5 @@
   <canvas id="confettiCanvas"></canvas>
 
   <script src="script.js"></script>
-  <script>
-    // Play / skip music
-    function playMusic(yes){
-      if(yes){
-        document.getElementById("bgm").play();
-      }
-      nextPage();
-    }
-  </script>
 </body>
 </html>
-
